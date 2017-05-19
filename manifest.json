@@ -16,7 +16,7 @@
     }
   },
   "background": {
-    "persistent": false,
+    "persistent": true,
     "scripts": [
       "background_script.js"
     ]
