@@ -28,6 +28,8 @@
     fill: 'forwards'
   }
 
+  let player = null
+
   chrome.extension.onMessage.addListener((message) => {
     if (message.action === 'show-notification') {
       showNotification()
@@ -37,17 +39,18 @@
   function showNotification () {
     removeNotification()
     document.body.insertAdjacentHTML('beforeend', html)
-    document
-      .querySelector('#chrome-plugin__toggle-tabs')
-      .animate(animationSteps, animationOptions)
-      .addEventListener('finish', removeNotification)
+
+    const element = document.querySelector('#chrome-plugin__toggle-tabs')
+    player = element.animate(animationSteps, animationOptions)
+    player.addEventListener('finish', removeNotification)
   }
 
   function removeNotification () {
-    let element = document.querySelector('#chrome-plugin__toggle-tabs')
+    const element = document.querySelector('#chrome-plugin__toggle-tabs')
+
     if (element) {
-      element.getAnimations()[0].cancel()
-      element.removeEventListener('finish', removeNotification)
+      player.cancel()
+      player.removeEventListener('finish', removeNotification)
       element.remove()
     }
   }

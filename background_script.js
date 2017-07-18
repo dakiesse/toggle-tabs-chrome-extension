@@ -83,13 +83,13 @@ chrome.commands.onCommand.addListener((command) => {
   // for example, the variable can have -1,
   // although in focus there is actually another window
   chrome.tabs.query({active: true, lastFocusedWindow: true}, (tabs) => {
-    if (tabs.length) {
-      currentWindowId = tabs[0].windowId
-    }
+    if (tabs.length) currentWindowId = tabs[0].windowId
   })
 
+  if (currentWindowId === chrome.tabs.TAB_ID_NONE) return
+
   // (-1) is window of devtools
-  if (command === 'toggle-tab' && currentWindowId !== -1) {
+  if (command === 'toggle-tab') {
     if (getPreviousTab()) {
       chrome.tabs.update(getPreviousTab(), {active: true})
     } else {
@@ -143,9 +143,13 @@ function clearStoreFromKilledTabId (tabId, windowId) {
 }
 
 function sendMessageToContent () {
-  chrome.tabs.sendMessage(getCurrentTab(), {action: 'show-notification'})
+  try {
+    chrome.tabs.sendMessage(getCurrentTab(), {action: 'show-notification'})
+  } catch (e) {}
 }
 
 function injectContentScriptToTab (tabId, cb) {
-  chrome.tabs.executeScript(tabId, {file: 'content_script.js', matchAboutBlank: true}, cb)
+  try {
+    chrome.tabs.executeScript(tabId, {file: 'content_script.js', matchAboutBlank: true}, cb)
+  } catch (e) {}
 }
