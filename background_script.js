@@ -77,8 +77,22 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
   }
 })
 
+// Click on "Browser Action"
+chrome.browserAction.onClicked.addListener(() => {
+  updateCurrentWindowId()
+  doToggle()
+})
 // Press a hot key
 chrome.commands.onCommand.addListener((command) => {
+  updateCurrentWindowId()
+
+  // (-1) is window of devtools
+  if (command === 'toggle-tab') {
+    doToggle()
+  }
+})
+
+function updateCurrentWindowId () {
   // why then sometimes the focus is lost
   // for example, the variable can have -1,
   // although in focus there is actually another window
@@ -87,26 +101,25 @@ chrome.commands.onCommand.addListener((command) => {
   })
 
   if (currentWindowId === chrome.tabs.TAB_ID_NONE) return
+}
 
-  // (-1) is window of devtools
-  if (command === 'toggle-tab') {
-    if (getPreviousTab()) {
-      chrome.tabs.update(getPreviousTab(), {active: true})
-    } else {
-      // injecting content script to tab
-      let currentTab = getCurrentTab()
+function doToggle () {
+  if (getPreviousTab()) {
+    chrome.tabs.update(getPreviousTab(), {active: true})
+  } else {
+    // injecting content script to tab
+    let currentTab = getCurrentTab()
 
-      if (!injectStore.has(currentTab)) {
-        injectContentScriptToTab(currentTab, () => {
-          sendMessageToContent()
-          injectStore.add(currentTab)
-        })
-      } else {
+    if (!injectStore.has(currentTab)) {
+      injectContentScriptToTab(currentTab, () => {
         sendMessageToContent()
-      }
+        injectStore.add(currentTab)
+      })
+    } else {
+      sendMessageToContent()
     }
   }
-})
+}
 
 function createStoreForWindow (windowId) {
   tabStore[windowId] = {

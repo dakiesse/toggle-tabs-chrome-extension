@@ -3,7 +3,7 @@
   "name": "Toggle Tabs",
   "description": "Switch between the current and recent last tabs, using Alt + Q for Windows, Linux or Command + E for Mac",
   "author": "Danil Chekalin",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "icons": {
     "16": "assets/icons/icon_16.png",
     "48": "assets/icons/icon_48.png",

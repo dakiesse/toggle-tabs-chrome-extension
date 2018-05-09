@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>Options Toggle Tabs</title>
-    <link href='http://fonts.googleapis.com/css?family=Snippet' rel='stylesheet' type='text/css'>
     <style>
         * {
             box-sizing: border-box;
@@ -15,56 +14,68 @@
         }
 
         body {
-            padding: 10%;
-            padding-bottom: 0;
+            padding: 0 10%;
+            display: flex;
+            align-items: center;
         }
     </style>
 </head>
 <body>
-<h1>Hello! This is the option page of plugin Toggle Tabs</h1>
-<br>
-<div>If you want to change hotkey (default:
-    <mark>Alt+Q</mark>
-    for Windows, Linux and
-    <mark>Command+E</mark>
-    for Mac), you can
-    <button id="configure-commands">click there</button>
-    and change that
-    <br><br>
-    <div style="border:1px solid #000; display: inline-block;">
-        <img src="/assets/options/4254fb47b9.png" width="483" height="142">
+<main>
+    <h1>Hello! This is the option page of plugin Toggle Tabs</h1>
+    <br>
+    <div>If you want to change hotkey (default:
+        <mark>Alt+Q</mark>
+        for Windows, Linux and
+        <mark>Command+E</mark>
+        for Mac), you can
+        <button id="configure-commands">click there</button>
+        and change that
+        <br><br>
+        <div style="border:1px solid #000; display: inline-block;">
+            <img src="/assets/options/4254fb47b9.png" width="483" height="142">
+        </div>
     </div>
-</div>
-<br>
-<br>
-<br>
-<p>Email for feedback: <a
-        href="mailto:dakiesse@gmail.com?subject=Feedback for Toggle Tabs Plugin">dakiesse@gmail.com</a></p>
-<br>
-<span>If you think this plugin is useful, you can thank me:</span>
-<div style="display: flex; align-items: center; margin-top: 6px;">
-    <span style="margin-right: 10px;">(only for russian)</span>
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"
-          style="margin-bottom: -4px;margin-right: 20px;">
-        <input type="hidden" name="cmd" value="_s-xclick">
-        <input type="hidden" name="hosted_button_id" value="WZZTG2EY7534Q">
-        <input type="image" src="https://www.paypalobjects.com/ru_RU/RU/i/btn/btn_donate_LG.gif" border="0"
-               name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!">
-        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-    </form>
+    <br>
+    <br>
+    <br>
+    <p>Email for feedback: <a
+            href="mailto:dakiesse@gmail.com?subject=Feedback for Toggle Tabs Plugin">dakiesse@gmail.com</a></p>
+    <br>
+    <span>If you think this plugin is useful, you can thank me:</span>
+    <div style="display: flex; align-items: center; margin-top: 6px;">
+        <span style="margin-right: 10px;">(only for russian)</span>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"
+              style="margin-bottom: -4px;margin-right: 20px;">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="WZZTG2EY7534Q">
+            <input type="image" src="https://www.paypalobjects.com/ru_RU/RU/i/btn/btn_donate_LG.gif" border="0"
+                   name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!">
+            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
 
-    <span style="margin-right: 10px;">(for any other)</span>
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="margin-bottom: -4px;">
-        <input type="hidden" name="cmd" value="_s-xclick">
-        <input type="hidden" name="hosted_button_id" value="93GAQDYUJA68Q">
-        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit"
-               alt="PayPal - The safer, easier way to pay online!">
-        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-    </form>
-</div>
-<br><br>
-<p>Best regards,</p>
-<p>Danil</p>
+        <span style="margin-right: 10px;">(for any other)</span>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="margin-bottom: -4px;">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="93GAQDYUJA68Q">
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0"
+                   name="submit"
+                   alt="PayPal - The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+    </div>
+    <br><br>
+    <p>Best regards,</p>
+    <p>Danil</p>
+
+    <hr>
+    <h2>Changelog:</h2>
+    <h4>1.2.1 (9 may 2018)</h4>
+    <ul style="padding-left: 16px;">
+        <li>Now the icon at toolbar works too</li>
+        <li>Fix error</li>
+    </ul>
+</main>
 <script src="content_script.js"></script>
 <script src="options_script.js"></script>
 </body>
