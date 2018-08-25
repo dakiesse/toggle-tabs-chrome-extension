@@ -122,10 +122,7 @@ function doToggle () {
 }
 
 function createStoreForWindow (windowId) {
-  tabStore[windowId] = {
-    previousTabId: null,
-    currentTabId: null,
-  }
+  tabStore[windowId] = []
 }
 
 function removeWindowFromStore (windowId) {
@@ -133,26 +130,24 @@ function removeWindowFromStore (windowId) {
 }
 
 function getCurrentTab () {
-  return tabStore[currentWindowId].currentTabId
+  const currentWindowStore = tabStore[currentWindowId]
+
+  return currentWindowStore[currentWindowStore.length - 1]
 }
 
 function getPreviousTab () {
-  return tabStore[currentWindowId].previousTabId
+  const currentWindowStore = tabStore[currentWindowId]
+
+  return currentWindowStore[currentWindowStore.length - 2]
 }
 
 function setCurrentTab (tabId, windowId) {
-  tabStore[windowId].previousTabId = tabStore[windowId].currentTabId
-  tabStore[windowId].currentTabId = tabId
+  tabStore[windowId] = tabStore[windowId].filter(_tabId => _tabId !== tabId)
+  tabStore[windowId].push(tabId)
 }
 
 function clearStoreFromKilledTabId (tabId, windowId) {
-  if (getPreviousTab() === tabId) {
-    tabStore[windowId].previousTabId = null
-  }
-
-  if (getCurrentTab() === tabId) {
-    tabStore[windowId].currentTabId = null
-  }
+  tabStore[windowId] = tabStore[windowId].filter(_tabId => _tabId !== tabId)
 }
 
 function sendMessageToContent () {
