@@ -35,8 +35,6 @@ chrome.windows.onFocusChanged.addListener((windowId) => {
 })
 
 chrome.tabs.onActivated.addListener((activeInfo) => {
-  console.log('activated')
-
   // If close a window with two or more tabs,
   // for some reason this event is triggered (with
   // data of killed window) before chrome.windows.onRemoved
@@ -46,7 +44,7 @@ chrome.tabs.onActivated.addListener((activeInfo) => {
 
     console.info(`Tab:${activeInfo.tabId} was activated into Window:${activeInfo.windowId}`)
   } catch (err) {
-
+    console.error(err)
   }
 })
 
@@ -78,7 +76,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
 })
 
 // Click on "Browser Action"
-chrome.browserAction.onClicked.addListener(() => {
+chrome.action.onClicked.addListener(() => {
   updateCurrentWindowId()
   doToggle()
 })
